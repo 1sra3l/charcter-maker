@@ -9,3 +9,5 @@ Currently this program only supports `.ini` file format, and requires the `tini`
 ## WIP
 
 This is in the early stages, and will eventually support a better set of statistics for the characters, potentially even multple types, and even multiple output/input formats (like `json` for example)
+
+![Alt text](/screenshots/ui.png?raw=true "UI")

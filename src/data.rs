@@ -33,8 +33,6 @@ pub const M_DEF:&str = "m_def";
 pub const TYPE:&str = "type";
 /// The field name for the class
 pub const CLASS:&str = "class";
-/// The field name for the name
-pub const NAME:&str = "name";
 /// The field name for the image filename
 pub const IMAGE:&str = "image";
 
