@@ -1,22 +1,11 @@
-# fl2rust-template
+# Character Maker
 
-## Usage
+A simple program designed in FLTK using FLUID to quickly create the UI, and written in Rust because it is easier to understand, and more clean.
 
-### Via Github:
+## Ini files
 
-Click `Use this template` on the top right to create a repo using this repo as a template. This will prompt you to enter your new repo's name.
+Currently this program only supports `.ini` file format, and requires the `tini` library for these operations.
 
-### Via [cargo-generate](https://crates.io/crates/cargo-generate):
+## WIP
 
-Run from a terminal:
-```
-$ cargo generate --git https://github.com/fltk-rs/fl2rust-template
-```
-This will prompt you to enter a project name.
-
-Please check the [fltk-rs repo](https://github.com/fltk-rs/fltk-rs) for the necessary dependencies required for creating fltk-rs applications.
-
-You can then open the fl file with fluid using:
-```
-$ fluid gui/mainview.fl &
-```
+This is in the early stages, and will eventually support a better set of statistics for the characters, potentially even multple types, and even multiple output/input formats (like `json` for example)
