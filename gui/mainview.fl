@@ -1,0 +1,105 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0307
+header_name {.h}
+code_name {.cxx}
+class UI {open
+} {
+  Function {make_window()} {open
+  } {
+    Fl_Window win {
+      label {Character Maker} open
+      xywh {183 108 500 600} type Double color 52 visible
+    } {
+      Fl_Group menu_group {open
+        xywh {0 0 535 55}
+      } {
+        Fl_Button save {
+          label Save
+          xywh {0 0 125 55} box FLAT_BOX color 60 labelfont 1
+        }
+        Fl_Button load {
+          label Load
+          xywh {125 0 125 55} box FLAT_BOX color 180 labelfont 1
+        }
+        Fl_Button quit {
+          label Quit
+          xywh {250 0 125 55} box FLAT_BOX color 80 labelfont 1
+        }
+        Fl_Button help {
+          label Help
+          xywh {375 0 125 55} box FLAT_BOX color 94 labelfont 1 labelcolor 32
+        }
+      }
+      Fl_Box hero {
+        xywh {212 322 64 128} color 183
+      }
+      Fl_Value_Input hp {
+        label {HP }
+        tooltip {Health Points} xywh {76 59 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input mp {
+        label {MP }
+        tooltip {Mana Points} xywh {76 94 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input atk {
+        label ATK
+        tooltip Attack xywh {76 129 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input def {
+        label DEF
+        tooltip Defense xywh {76 164 50 30} box FLAT_BOX
+      }
+      Fl_Button sprite_sheet {
+        label {Sprite Sheet}
+        tooltip {The image used for character} xywh {131 59 365 390} box FLAT_BOX color 205 align 518
+      }
+      Fl_Value_Input m_atk {
+        label {M ATK}
+        tooltip {Mana Attack} xywh {76 199 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input m_def {
+        label {M DEF}
+        tooltip {Mana Defense} xywh {76 234 50 30} box FLAT_BOX
+      }
+      Fl_Input name {
+        label Name
+        xywh {50 565 205 30} box FLAT_BOX
+      }
+      Fl_Menu_Button class {
+        label Class open
+        xywh {5 480 120 30} box FLAT_BOX down_box FLAT_BOX
+      } {}
+      Fl_Menu_Button c_type {
+        label Type open
+        tooltip {The type of creature you are} xywh {5 445 120 30} box FLAT_BOX down_box FLAT_BOX
+      } {}
+      Fl_Value_Input speed {
+        label SPEED
+        tooltip Speed xywh {75 270 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input gp {
+        label GP
+        tooltip {Gold Points} xywh {75 305 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input xp {
+        label XP
+        tooltip {Experience Points} xywh {75 340 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input level {
+        label LEVEL
+        tooltip {Current Level of Experience} xywh {75 375 50 30} box FLAT_BOX
+      }
+      Fl_Value_Input xp_next {
+        label {XP NEXT}
+        tooltip {Experience Points needed for next level} xywh {75 410 50 30} box FLAT_BOX
+      }
+      Fl_Browser characters {selected
+        xywh {260 475 230 120} type Hold box FLAT_BOX
+      }
+      Fl_Input file {
+        label File
+        xywh {50 530 205 30} box FLAT_BOX
+      }
+    }
+  }
+}

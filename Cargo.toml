@@ -1,0 +1,15 @@
+[package]
+name = "character_maker"
+version = "0.1.0"
+authors = ["1sra3l <israeldahl@protonmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fltk = "1"
+# ini file reader
+tini = "1.0"
+
+[build-dependencies]
+fl2rust = "0.4"
