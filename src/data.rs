@@ -35,6 +35,17 @@ pub const TYPE:&str = "type";
 pub const CLASS:&str = "class";
 /// The field name for the image filename
 pub const IMAGE:&str = "image";
+/// The field name for the clan
+pub const CLAN:&str = "clan";
+/// The field name for mana weakness
+pub const M_WEAK:&str = "m_weak";
+/// The field name for mana strength
+pub const M_STRONG:&str = "m_strong";
+/// The field name for mana attacks
+pub const M_ATTACKS:&str = "m_attacks";
+/// The field name for the Mana type
+pub const M_TYPE:&str = "m_type";
+
 
 #[derive(Debug, Clone)]
 pub struct Stats {
@@ -74,6 +85,16 @@ pub struct Stats {
     pub c_type:String,
     /// Ini details
     pub ini_details:IniDetails,
+    /// The clan
+    pub clan:String,
+    /// The mana this character is weak against
+    pub m_weak:String,
+    /// The mana this character is strong against
+    pub m_strong:String,
+    /// The mana attacks
+    pub m_attacks:Vec<String>,
+    /// The Mana type
+    pub m_type:String,
 }
 impl Stats {
 /// Save the Stats to the ini file
@@ -100,6 +121,11 @@ impl Stats {
                                   .item(TYPE,self.c_type.to_owned())
                                   .item(CLASS,self.class.to_owned())
                                   .item(IMAGE,self.image.to_owned())
+                                  .item(CLAN,self.clan.to_owned())
+                                  .item(M_WEAK,self.m_weak.to_owned())
+                                  .item(M_STRONG,self.m_strong.to_owned())
+                                  .item_vec_with_sep(M_ATTACKS, &self.m_attacks.clone(), ",")
+                                  .item(M_TYPE,self.m_type.to_owned())
                                   .to_file(&save_filename.to_owned())
                                   .is_err() { return false }
         true
@@ -122,6 +148,12 @@ impl Stats {
         let image:String = get_or_default(IMAGE, ini_details.clone());
         let class:String = get_or_default(CLASS, ini_details.clone());
         let c_type:String = get_or_default(TYPE, ini_details.clone());
+        let clan:String = get_or_default(CLAN, ini_details.clone());
+        let m_weak:String = get_or_default(M_WEAK, ini_details.clone());
+        let m_strong:String = get_or_default(M_STRONG, ini_details.clone());
+        //TODO
+        let m_attacks:Vec<String> = get_vec(M_ATTACKS, ini_details.clone());
+        let m_type:String = get_or_default(M_TYPE, ini_details.clone());
         Stats {
             xp:xp,
             xp_next:xp_next,
@@ -141,6 +173,11 @@ impl Stats {
             class:class,
             c_type:c_type,
             ini_details:ini_details.clone(),
+            clan:clan,
+            m_weak:m_weak,
+            m_strong:m_strong,
+            m_attacks:m_attacks,
+            m_type:m_type,
         }
     }
 
@@ -165,6 +202,11 @@ impl Stats {
             class:String::from(""),
             c_type:String::from(""),
             ini_details:IniDetails::empty(),
+            clan:String::from(""),
+            m_weak:String::from(""),
+            m_strong:String::from(""),
+            m_attacks:vec![],
+            m_type:String::from(""),
         }
     }
 }

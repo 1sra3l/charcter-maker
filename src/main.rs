@@ -44,14 +44,39 @@ fn main() {
     let mut ui = mainview::UI::make_window();
     let mut stats:Stats = Stats::empty();
     let (send_action, receive_action) = app::channel::<Action>();
-
-    ui.quit.emit(send_action, Action::Quit);
-    ui.load.emit(send_action, Action::Load);
-    ui.save.emit(send_action, Action::Save);
-    ui.help.emit(send_action, Action::Help);
+    let menu = ui.menu.clone();
+    ui.menu.add(
+    "&File/&Open...\t",
+    enums::Shortcut::Ctrl | 'o',
+    menu::MenuFlag::Normal,
+     |_| (),);
+    ui.menu.add(
+    "&File/&Save...\t",
+    enums::Shortcut::Ctrl | 's',
+    menu::MenuFlag::Normal,
+     |_| (),);
+    ui.menu.add(
+    "&File/&Quit...\t",
+    enums::Shortcut::Ctrl | 'q',
+    menu::MenuFlag::Normal,
+     |_| (),);
+    let mut m = match menu.at(1){
+        Some(m) => m,
+        None => return,
+    };
+    m.emit(send_action, Action::Load);
+    m = match menu.at(2){
+        Some(m) => m,
+        None => return,
+    };
+    m.emit(send_action, Action::Save);
+    m = match menu.at(3){
+        Some(m) => m,
+        None => return,
+    };
+    m.emit(send_action, Action::Quit);
     ui.sprite_sheet.emit(send_action, Action::SpriteSheet);
     ui.characters.emit(send_action, Action::Switch);
-
     //run the app
     while app.wait() {
         // Check the buttons
@@ -74,6 +99,11 @@ fn main() {
             class:ui.class.label().to_owned(),
             c_type:ui.c_type.label().to_owned(),
             ini_details:stats.ini_details.clone(),
+            clan:String::from(""),
+            m_weak:String::from(""),
+            m_strong:String::from(""),
+            m_attacks:vec![],
+            m_type:String::from(""),
         };
         if let Some(button_action) = receive_action.recv() {
             match button_action {

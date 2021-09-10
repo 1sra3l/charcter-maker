@@ -24,6 +24,27 @@ pub fn get_or_default(item:&str, ini_details:IniDetails)-> String {
     };
     return_item
 }
+
+/// Get the `item` from the `ini_details` `section` or from `[default]` as a `String`
+pub fn get_vec(item:&str, ini_details:IniDetails)-> Vec<String> {
+    let section:String = ini_details.section.to_owned();
+    let ini_string:String = ini_details.ini_string.to_owned();
+    let test_ini = Ini::from_string(ini_string.to_owned());
+    if test_ini.is_err() {
+        println!("data::get_or_default({:?},{:?})-> String\n`Ini::from_string` ERROR:{:?}", item, ini_details.clone(), test_ini.err());
+        return vec![]
+    }
+    let conf = test_ini.unwrap();
+    let return_item:Vec<String> = match conf.get_vec(section.to_owned().as_str(), item) {
+        Some(return_item) => return_item,
+        None => match conf.get_vec("default", item) {
+            Some(default_item) => default_item,
+            None => vec![],
+        },
+    };
+    return_item
+}
+
 /// Get the `item` from the `ini_details` `section` or from `[default]` as an `f64`
 pub fn get_or_default_f64(item:&str, ini_details:IniDetails, default_return:f64)-> f64 {
     let return_item:String = get_or_default(item, ini_details.clone());
