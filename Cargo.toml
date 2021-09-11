@@ -12,4 +12,4 @@ fltk = "1"
 tini = "1.0"
 
 [build-dependencies]
-fl2rust = "0.4.8"
+fl2rust = "0.4.9"
