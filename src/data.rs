@@ -45,7 +45,28 @@ pub const M_STRONG:&str = "m_strong";
 pub const M_ATTACKS:&str = "m_attacks";
 /// The field name for the Mana type
 pub const M_TYPE:&str = "m_type";
-
+/// The field name for the wisdom
+pub const WIS:&str = "wis";
+/// The field name for the agility
+pub const AGI:&str = "agi";
+/// The field name for the strength
+pub const STR:&str = "str";
+/// The field name for the dexterity
+pub const DEX:&str = "dex";
+/// The field name for the constitution
+pub const CON:&str = "con";
+/// The field name for the intelligence
+pub const INT:&str = "int";
+/// The field name for the charisma
+pub const CHAR:&str = "char";
+/// The field name for the age
+pub const AGE:&str = "age";
+/// The field name for the story
+pub const STORY:&str = "story";
+/// The field name for the bonus
+pub const BONUS:&str = "bonus";
+/// The field name for the stage
+pub const STAGE:&str = "stage";
 
 #[derive(Debug, Clone)]
 pub struct Stats {
@@ -73,8 +94,24 @@ pub struct Stats {
     pub level:f64,
     /// The speed
     pub speed:f64,
-    /// your currency points
+    /// Current currency points
     pub gp:f64,
+    /// The agility Points
+    pub agility:f64,
+    /// The strength Points
+    pub strength:f64,
+    /// The dexterity Points
+    pub dexterity:f64,
+    /// The constitution Points
+    pub constitution:f64,
+    /// The intelligence Points
+    pub intelligence:f64,
+    /// The charisma Points
+    pub charisma:f64,
+    /// The wisdom Points
+    pub wisdom:f64,
+    /// The current age
+    pub age:f64,
     /// The name
     pub name:String,
     /// The image filename
@@ -168,6 +205,14 @@ impl Stats {
             level:level,
             speed:speed,
             gp:gp,
+            agility:0.0,
+            strength:0.0,
+            dexterity:0.0,
+            constitution:0.0,
+            intelligence:0.0,
+            charisma:0.0,
+            wisdom:0.0,
+            age:0.0,
             name:name,
             image:image,
             class:class,
@@ -197,6 +242,14 @@ impl Stats {
             level:0.0,
             speed:0.0,
             gp:0.0,
+            agility:0.0,
+            strength:0.0,
+            dexterity:0.0,
+            constitution:0.0,
+            intelligence:0.0,
+            charisma:0.0,
+            wisdom:0.0,
+            age:0.0,
             name:String::from(""),
             image:String::from(""),
             class:String::from(""),

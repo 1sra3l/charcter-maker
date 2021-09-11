@@ -10,7 +10,7 @@ class UI {open
       label {Character Maker} open
       xywh {594 117 530 595} type Double color 52 visible
     } {
-      Fl_Menu_Bar menu {open
+      Fl_Menu_Bar menu {open selected
         xywh {0 0 540 30} box FLAT_BOX
       } {}
       Fl_Value_Input hp {
@@ -46,7 +46,7 @@ class UI {open
         tooltip {Character's name} xywh {55 525 205 30} box FLAT_BOX
       }
       Fl_Menu_Button class {
-        label Class open selected
+        label Class open
         tooltip {The Class of the character} xywh {155 210 50 30} box FLAT_BOX down_box FLAT_BOX
       } {}
       Fl_Menu_Button c_type {
@@ -130,7 +130,7 @@ class UI {open
       }
       Fl_Input story {
         label Story
-        tooltip {Back-story file name} xywh {55 560 205 30} box FLAT_BOX
+        tooltip {Back-story file name} xywh {55 560 180 30} box FLAT_BOX
       }
       Fl_Menu_Button stage {
         label Stage open
@@ -143,6 +143,10 @@ class UI {open
       Fl_Value_Input age {
         label AGE
         tooltip {Age of the character} xywh {155 175 50 30} box FLAT_BOX
+      }
+      Fl_Button {} {
+        label {@fileopen}
+        xywh {240 560 35 30} box FLAT_BOX
       }
     }
   }

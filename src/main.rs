@@ -22,6 +22,8 @@ pub enum Action {
     Help,
     SpriteSheet,
     Switch,
+    Story,
+    New,
 }
 
 fn make_image(file_name:String) -> Result<SharedImage, FltkError> {
@@ -46,6 +48,11 @@ fn main() {
     let (send_action, receive_action) = app::channel::<Action>();
     let menu = ui.menu.clone();
     ui.menu.add(
+    "&File/&New...\t",
+    enums::Shortcut::Ctrl | 'q',
+    menu::MenuFlag::Normal,
+     |_| (),);
+    ui.menu.add(
     "&File/&Open...\t",
     enums::Shortcut::Ctrl | 'o',
     menu::MenuFlag::Normal,
@@ -69,8 +76,13 @@ fn main() {
         Some(m) => m,
         None => return,
     };
-    m.emit(send_action, Action::Save);
+    m.emit(send_action, Action::Load);
     m = match menu.at(3){
+        Some(m) => m,
+        None => return,
+    };
+    m.emit(send_action, Action::Save);
+    m = match menu.at(4){
         Some(m) => m,
         None => return,
     };
@@ -94,6 +106,14 @@ fn main() {
             hp_max:ui.hp.value(),
             level:ui.level.value(),
             speed:ui.speed.value(),
+            agility:0.0,
+            strength:0.0,
+            dexterity:0.0,
+            constitution:0.0,
+            intelligence:0.0,
+            charisma:0.0,
+            wisdom:0.0,
+            age:0.0,
             name:ui.name.value().to_owned(),
             image:ui.sprite_sheet.label().to_owned(),
             class:ui.class.label().to_owned(),
@@ -113,6 +133,13 @@ fn main() {
                         None => continue,
                     };
                     stats.save(file.to_string());
+                },
+                Action::Story => {
+                    let file = match dialog::file_chooser("Choose File", "*.txt", ".", true){
+                        Some(file) => file,
+                        None => continue,
+                    };
+                    ui.story.set_value(file.as_str());
                 },
                 Action::Load => {
                     let file = match dialog::file_chooser("Choose File", "*.ini", ".", true){
@@ -134,13 +161,46 @@ fn main() {
                     }
                     
                 },
+                Action::New => {
+                    ui.sprite_sheet.set_image::<SharedImage>(None);
+                    ui.hp.set_value(0.0);
+                    ui.mp.set_value(0.0);
+                    ui.xp.set_value(0.0);
+                    ui.gp.set_value(0.0);
+                    ui.atk.set_value(0.0);
+                    ui.def.set_value(0.0);
+                    ui.m_atk.set_value(0.0);
+                    ui.m_def.set_value(0.0);
+                    ui.speed.set_value(0.0);
+                    ui.agility.set_value(0.0);
+                    ui.strength.set_value(0.0);
+                    ui.dexterity.set_value(0.0);
+                    ui.constitution.set_value(0.0);
+                    ui.intelligence.set_value(0.0);
+                    ui.charisma.set_value(0.0);
+                    ui.wisdom.set_value(0.0);
+                    ui.level.set_value(0.0);
+                    ui.age.set_value(0.0);
+                    ui.name.set_value("");
+                    ui.class.set_label("Class");
+                    ui.clan.set_label("Clan");
+                    ui.c_type.set_label("Type");
+                    ui.m_strong.set_label("M Strong");
+                    ui.m_weak.set_label("M Weak");
+                    ui.m_type.set_label("M Type");
+                    ui.bonus.set_label("Bonus");
+                    ui.stage.set_label("Stage");
+                    ui.sprite_sheet.set_label("Sprite Sheet");
+                    ui.story.set_value("");
+                    ui.file.set_value("");
+                    ui.win.redraw();
+                },
                 Action::Switch => {
                     ui.sprite_sheet.set_image::<SharedImage>(None);
                     let section = match ui.characters.selected_text(){
                         Some(section) => section,
                         None => continue,
                     };
-                    println!("Switch to:{:?}", section.to_owned());
                     let details = IniDetails::load(ui.file.value().to_owned(), section.to_owned().as_str());
                     stats = Stats::load(details);
                     ui.hp.set_value(stats.hp);
@@ -153,9 +213,27 @@ fn main() {
                     ui.m_def.set_value(stats.m_def);
                     ui.speed.set_value(stats.speed);
                     ui.name.set_value(stats.name.as_str());
+                    
+                    ui.agility.set_value(0.0);
+                    ui.strength.set_value(0.0);
+                    ui.dexterity.set_value(0.0);
+                    ui.constitution.set_value(0.0);
+                    ui.intelligence.set_value(0.0);
+                    ui.charisma.set_value(0.0);
+                    ui.wisdom.set_value(0.0);
+                    ui.level.set_value(0.0);
+                    ui.age.set_value(0.0);
+                    ui.name.set_value("");
                     ui.class.set_label(stats.class.as_str());
                     ui.c_type.set_label(stats.c_type.as_str());
+                    ui.clan.set_label("Clan");
+                    ui.m_strong.set_label("M Strong");
+                    ui.m_weak.set_label("M Weak");
+                    ui.m_type.set_label("M Type");
+                    ui.bonus.set_label("Bonus");
+                    ui.stage.set_label("Stage");
                     ui.sprite_sheet.set_label(stats.image.as_str());
+                    ui.story.set_value("");
                     let img = make_image(stats.image.to_owned());
                     if img.is_ok() {
                         let img = img.ok().unwrap();
