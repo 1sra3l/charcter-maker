@@ -8,11 +8,33 @@ class UI {open
   } {
     Fl_Window win {
       label {Character Maker} open
-      xywh {594 117 530 595} type Double color 52 visible
+      xywh {95 85 530 595} type Double color 52 visible
     } {
-      Fl_Menu_Bar menu {open selected
+      Fl_Menu_Bar menu {open
         xywh {0 0 540 30} box FLAT_BOX
-      } {}
+      } {
+        Submenu {} {
+          label {&File} open selected
+          xywh {0 0 100 20}
+        } {
+          MenuItem {} {
+            label {&New}
+            xywh {0 0 100 20} shortcut 0x4006e
+          }
+          MenuItem {} {
+            label {&Open}
+            xywh {0 0 100 20} shortcut 0x4006f
+          }
+          MenuItem {} {
+            label {&Save}
+            xywh {0 0 100 20} shortcut 0x40073
+          }
+          MenuItem {} {
+            label {&Quit}
+            xywh {0 0 100 20} shortcut 0x40071
+          }
+        }
+      }
       Fl_Value_Input hp {
         label {HP }
         tooltip {Health Points} xywh {56 35 50 29} box FLAT_BOX
@@ -147,6 +169,7 @@ class UI {open
       Fl_Button {} {
         label {@fileopen}
         xywh {240 560 35 30} box FLAT_BOX
+        code0 story_button
       }
     }
   }

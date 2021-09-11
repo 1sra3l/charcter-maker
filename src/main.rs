@@ -47,26 +47,7 @@ fn main() {
     let mut stats:Stats = Stats::empty();
     let (send_action, receive_action) = app::channel::<Action>();
     let menu = ui.menu.clone();
-    ui.menu.add(
-    "&File/&New...\t",
-    enums::Shortcut::Ctrl | 'q',
-    menu::MenuFlag::Normal,
-     |_| (),);
-    ui.menu.add(
-    "&File/&Open...\t",
-    enums::Shortcut::Ctrl | 'o',
-    menu::MenuFlag::Normal,
-     |_| (),);
-    ui.menu.add(
-    "&File/&Save...\t",
-    enums::Shortcut::Ctrl | 's',
-    menu::MenuFlag::Normal,
-     |_| (),);
-    ui.menu.add(
-    "&File/&Quit...\t",
-    enums::Shortcut::Ctrl | 'q',
-    menu::MenuFlag::Normal,
-     |_| (),);
+
     let mut m = match menu.at(1){
         Some(m) => m,
         None => return,
@@ -106,24 +87,25 @@ fn main() {
             hp_max:ui.hp.value(),
             level:ui.level.value(),
             speed:ui.speed.value(),
-            agility:0.0,
-            strength:0.0,
-            dexterity:0.0,
-            constitution:0.0,
-            intelligence:0.0,
-            charisma:0.0,
-            wisdom:0.0,
-            age:0.0,
+            agility:ui.agility.value(),
+            strength:ui.strength.value(),
+            dexterity:ui.dexterity.value(),
+            constitution:ui.constitution.value(),
+            intelligence:ui.intelligence.value(),
+            charisma:ui.charisma.value(),
+            wisdom:ui.wisdom.value(),
+            age:ui.age.value(),
             name:ui.name.value().to_owned(),
             image:ui.sprite_sheet.label().to_owned(),
             class:ui.class.label().to_owned(),
             c_type:ui.c_type.label().to_owned(),
             ini_details:stats.ini_details.clone(),
-            clan:String::from(""),
-            m_weak:String::from(""),
-            m_strong:String::from(""),
+            clan:ui.clan.label().to_owned(),
+            m_weak:ui.m_weak.label().to_owned(),
+            m_strong:ui.m_strong.label().to_owned(),
+ // TODO mana attacks
             m_attacks:vec![],
-            m_type:String::from(""),
+            m_type:ui.m_type.label().to_owned(),
         };
         if let Some(button_action) = receive_action.recv() {
             match button_action {
@@ -213,23 +195,21 @@ fn main() {
                     ui.m_def.set_value(stats.m_def);
                     ui.speed.set_value(stats.speed);
                     ui.name.set_value(stats.name.as_str());
-                    
-                    ui.agility.set_value(0.0);
-                    ui.strength.set_value(0.0);
-                    ui.dexterity.set_value(0.0);
-                    ui.constitution.set_value(0.0);
-                    ui.intelligence.set_value(0.0);
-                    ui.charisma.set_value(0.0);
-                    ui.wisdom.set_value(0.0);
-                    ui.level.set_value(0.0);
-                    ui.age.set_value(0.0);
-                    ui.name.set_value("");
+                    ui.agility.set_value(stats.agility);
+                    ui.strength.set_value(stats.strength);
+                    ui.dexterity.set_value(stats.dexterity);
+                    ui.constitution.set_value(stats.constitution);
+                    ui.intelligence.set_value(stats.intelligence);
+                    ui.charisma.set_value(stats.charisma);
+                    ui.wisdom.set_value(stats.wisdom);
+                    ui.level.set_value(stats.level);
+                    ui.age.set_value(stats.age);
                     ui.class.set_label(stats.class.as_str());
                     ui.c_type.set_label(stats.c_type.as_str());
-                    ui.clan.set_label("Clan");
-                    ui.m_strong.set_label("M Strong");
-                    ui.m_weak.set_label("M Weak");
-                    ui.m_type.set_label("M Type");
+                    ui.clan.set_label(stats.clan.as_str());
+                    ui.m_strong.set_label(stats.m_strong.as_str());
+                    ui.m_weak.set_label(stats.m_weak.as_str());
+                    ui.m_type.set_label(stats.m_type.as_str());
                     ui.bonus.set_label("Bonus");
                     ui.stage.set_label("Stage");
                     ui.sprite_sheet.set_label(stats.image.as_str());

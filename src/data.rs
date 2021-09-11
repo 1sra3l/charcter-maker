@@ -145,24 +145,32 @@ impl Stats {
         };
         let conf = test_ini;
         if conf.section(self.name.to_owned())
-                                  .item(HP,self.hp_max)
-                                  .item(MP,self.mp_max)
-                                  .item(XP,self.xp)
-                                  .item(GP,self.gp)
-                                  .item(LEVEL,self.level)
-                                  .item(ATK,self.atk)
-                                  .item(DEF,self.def)
-                                  .item(M_ATK,self.m_atk)
-                                  .item(M_DEF,self.m_def)
-                                  .item(SPEED,self.speed)
-                                  .item(TYPE,self.c_type.to_owned())
-                                  .item(CLASS,self.class.to_owned())
-                                  .item(IMAGE,self.image.to_owned())
-                                  .item(CLAN,self.clan.to_owned())
-                                  .item(M_WEAK,self.m_weak.to_owned())
-                                  .item(M_STRONG,self.m_strong.to_owned())
+                                  .item(HP, self.hp_max)
+                                  .item(MP, self.mp_max)
+                                  .item(XP, self.xp)
+                                  .item(GP, self.gp)
+                                  .item(LEVEL, self.level)
+                                  .item(ATK, self.atk)
+                                  .item(DEF, self.def)
+                                  .item(M_ATK, self.m_atk)
+                                  .item(M_DEF, self.m_def)
+                                  .item(SPEED, self.speed)
+                                  .item(TYPE, self.c_type.to_owned())
+                                  .item(CLASS, self.class.to_owned())
+                                  .item(IMAGE, self.image.to_owned())
+                                  .item(CLAN, self.clan.to_owned())
+                                  .item(M_WEAK, self.m_weak.to_owned())
+                                  .item(M_STRONG, self.m_strong.to_owned())
                                   .item_vec_with_sep(M_ATTACKS, &self.m_attacks.clone(), ",")
-                                  .item(M_TYPE,self.m_type.to_owned())
+                                  .item(M_TYPE, self.m_type.to_owned())
+                                  .item(AGI, self.agility)
+                                  .item(STR, self.strength)
+                                  .item(DEX, self.dexterity)
+                                  .item(CON, self.constitution)
+                                  .item(INT, self.intelligence)
+                                  .item(CHAR, self.charisma)
+                                  .item(WIS, self.wisdom)
+                                  .item(AGE, self.age)
                                   .to_file(&save_filename.to_owned())
                                   .is_err() { return false }
         true
@@ -188,6 +196,14 @@ impl Stats {
         let clan:String = get_or_default(CLAN, ini_details.clone());
         let m_weak:String = get_or_default(M_WEAK, ini_details.clone());
         let m_strong:String = get_or_default(M_STRONG, ini_details.clone());
+        let agility:f64 = get_or_zero_f64(AGI, ini_details.clone());
+        let strength:f64 = get_or_zero_f64(STR, ini_details.clone());
+        let dexterity:f64 = get_or_zero_f64(DEX, ini_details.clone());
+        let constitution:f64 = get_or_zero_f64(CON, ini_details.clone());
+        let intelligence:f64 = get_or_zero_f64(INT, ini_details.clone());
+        let charisma:f64 = get_or_zero_f64(CHAR, ini_details.clone());
+        let wisdom:f64 = get_or_zero_f64(WIS, ini_details.clone());
+        let age:f64 = get_or_zero_f64(AGE, ini_details.clone());
         //TODO
         let m_attacks:Vec<String> = get_vec(M_ATTACKS, ini_details.clone());
         let m_type:String = get_or_default(M_TYPE, ini_details.clone());
@@ -205,14 +221,14 @@ impl Stats {
             level:level,
             speed:speed,
             gp:gp,
-            agility:0.0,
-            strength:0.0,
-            dexterity:0.0,
-            constitution:0.0,
-            intelligence:0.0,
-            charisma:0.0,
-            wisdom:0.0,
-            age:0.0,
+            agility:agility,
+            strength:strength,
+            dexterity:dexterity,
+            constitution:constitution,
+            intelligence:intelligence,
+            charisma:charisma,
+            wisdom:wisdom,
+            age:age,
             name:name,
             image:image,
             class:class,

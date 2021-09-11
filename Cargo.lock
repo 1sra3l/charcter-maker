@@ -34,9 +34,9 @@ dependencies = [
 
 [[package]]
 name = "fl2rust"
-version = "0.4.7"
+version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b17bbc84b18819aeea04fd2cb9089a170354285fc0e15a73b561eb49bc3acb26"
+checksum = "d0d333a138a4a347759f26080939879d8250a1465d3c110ee39fb8913aaf86e7"
 
 [[package]]
 name = "fltk"
