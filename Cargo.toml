@@ -8,6 +8,11 @@ edition = "2018"
 
 [dependencies]
 fltk = "1"
+rpg-stat = "3.0"
+toml = "0.5"
+num = "0.2"
+serde = { version = "1.0.130", features = ["derive"] }
+
 # ini file reader
 tini = "1.0"
 

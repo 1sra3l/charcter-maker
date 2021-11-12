@@ -8,13 +8,13 @@ class UI {open
   } {
     Fl_Window win {
       label {Character Maker} open
-      xywh {95 85 530 595} type Double color 52 visible
+      xywh {95 85 530 525} type Double color 52 visible
     } {
       Fl_Menu_Bar menu {open
         xywh {0 0 540 30} box FLAT_BOX
       } {
         Submenu {} {
-          label {&File} open selected
+          label {&File} open
           xywh {0 0 100 20}
         } {
           MenuItem {} {
@@ -53,7 +53,7 @@ class UI {open
       }
       Fl_Button sprite_sheet {
         label {Sprite Sheet}
-        tooltip {The image used for character} xywh {215 35 310 390} box FLAT_BOX color 205 align 518
+        tooltip {The image used for character} xywh {215 70 310 390} box FLAT_BOX color 205 align 518
       }
       Fl_Value_Input m_atk {
         label {M ATK}
@@ -65,15 +65,15 @@ class UI {open
       }
       Fl_Input name {
         label Name
-        tooltip {Character's name} xywh {55 525 205 30} box FLAT_BOX
+        tooltip {Character's name} xywh {260 35 265 30} box FLAT_BOX
       }
       Fl_Menu_Button class {
         label Class open
-        tooltip {The Class of the character} xywh {155 210 50 30} box FLAT_BOX down_box FLAT_BOX
+        tooltip {The Class of the character} xywh {155 315 50 30} box FLAT_BOX down_box FLAT_BOX
       } {}
       Fl_Menu_Button c_type {
         label Type open
-        tooltip {The type of creature you are} xywh {155 280 50 30} box FLAT_BOX down_box FLAT_BOX
+        tooltip {The type of creature you are} xywh {155 350 50 30} box FLAT_BOX down_box FLAT_BOX
       } {}
       Fl_Value_Input speed {
         label SPEED
@@ -81,47 +81,20 @@ class UI {open
       }
       Fl_Value_Input gp {
         label GP
-        tooltip {Gold Points} xywh {155 35 50 30} box FLAT_BOX
+        tooltip {Gold Points} xywh {155 140 50 30} box FLAT_BOX
       }
       Fl_Value_Input xp {
         label XP
-        tooltip {Experience Points} xywh {155 70 50 30} box FLAT_BOX
+        tooltip {Experience Points} xywh {155 175 50 30} box FLAT_BOX
       }
       Fl_Value_Input level {
         label LEVEL
-        tooltip {Current Level of Experience} xywh {155 105 50 30} box FLAT_BOX
+        tooltip {Current Level of Experience} xywh {155 210 50 30} box FLAT_BOX
       }
       Fl_Value_Input xp_next {
         label NEXT
-        tooltip {Experience Points needed for next level} xywh {155 140 50 30} box FLAT_BOX
+        tooltip {Experience Points needed for next level} xywh {155 245 50 30} box FLAT_BOX
       }
-      Fl_Browser characters {
-        tooltip {List of characters in file} xywh {265 445 255 110} type Hold box FLAT_BOX
-      }
-      Fl_Input file {
-        label File
-        tooltip {Filename being read} xywh {315 560 205 30} box FLAT_BOX
-      }
-      Fl_Menu_Button m_weak {
-        label {M Weak} open
-        tooltip {Mana Weaknesses} xywh {130 350 75 30} box FLAT_BOX down_box FLAT_BOX
-      } {}
-      Fl_Menu_Button m_strong {
-        label {M Strong} open
-        tooltip {Mana the character is strong against} xywh {130 315 75 30} box FLAT_BOX down_box FLAT_BOX
-      } {}
-      Fl_Menu_Button m_attacks {
-        label {M Attacks} open
-        tooltip {Mana Attacks} xywh {130 385 75 30} box FLAT_BOX down_box FLAT_BOX
-      } {}
-      Fl_Menu_Button m_type {
-        label {M Type} open
-        tooltip {Mana type of the character} xywh {130 420 75 30} box FLAT_BOX down_box FLAT_BOX
-      } {}
-      Fl_Menu_Button clan {
-        label Clan open
-        tooltip {The Clan you are part of} xywh {155 245 50 30} box FLAT_BOX down_box FLAT_BOX
-      } {}
       Fl_Value_Input agility {
         label AGI
         tooltip Agility xywh {55 315 50 30} box FLAT_BOX
@@ -136,11 +109,11 @@ class UI {open
       }
       Fl_Value_Input constitution {
         label CON
-        tooltip Constitution xywh {55 420 50 30} box FLAT_BOX
+        tooltip Constitution xywh {155 35 50 30} box FLAT_BOX
       }
       Fl_Value_Input intelligence {
         label INT
-        tooltip Intelligence xywh {55 455 50 30} box FLAT_BOX
+        tooltip Intelligence xywh {155 70 50 30} box FLAT_BOX
       }
       Fl_Value_Input wisdom {
         label WIS
@@ -148,28 +121,19 @@ class UI {open
       }
       Fl_Value_Input charisma {
         label CHAR
-        tooltip Charisma xywh {55 490 50 30} box FLAT_BOX
-      }
-      Fl_Input story {
-        label Story
-        tooltip {Back-story file name} xywh {55 560 180 30} box FLAT_BOX
+        tooltip Charisma xywh {155 105 50 30} box FLAT_BOX
       }
       Fl_Menu_Button stage {
         label Stage open
-        tooltip {Stage of life character is in} xywh {130 490 75 30} box FLAT_BOX down_box FLAT_BOX
-      } {}
-      Fl_Menu_Button bonus {
-        label Bonus open
-        tooltip {The Armor bonus} xywh {130 455 75 30} box FLAT_BOX down_box FLAT_BOX
+        tooltip {Stage of life character is in} xywh {130 385 75 30} box FLAT_BOX down_box FLAT_BOX
       } {}
       Fl_Value_Input age {
         label AGE
-        tooltip {Age of the character} xywh {155 175 50 30} box FLAT_BOX
+        tooltip {Age of the character} xywh {155 280 50 30} box FLAT_BOX
       }
-      Fl_Button {} {
-        label {@fileopen}
-        xywh {240 560 35 30} box FLAT_BOX
-        code0 story_button
+      Fl_Input file {
+        label File selected
+        tooltip {Back-story file name} xywh {65 490 455 30} box FLAT_BOX
       }
     }
   }

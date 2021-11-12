@@ -2,12 +2,10 @@
 
 A simple program designed in FLTK using FLUID to quickly create the UI, and written in Rust because it is easier to understand, and more clean.
 
-## Ini files
+## ini/toml
 
-Currently this program only supports `.ini` file format, and requires the `tini` library for these operations.
+Cuurrently both are supported via `serde` and `rpgstat`  The Stats resented are the `Advanced` stats in `rpgstat::stats`
 
-## WIP
-
-This is in the early stages, and will eventually support a better set of statistics for the characters, potentially even multple types, and even multiple output/input formats (like `json` for example)
+The image of Tux is by [BartM](https://openclipart.org/artist/BartM) from [openclipart.org](https://openclipart.org/detail/178503/roman-soldier-penguin)
 
 ![Alt text](/screenshots/ui.png?raw=true "UI")

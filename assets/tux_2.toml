@@ -1,0 +1,26 @@
+name = "Tux Warrior"
+image = "assets/images/tux.svg"
+
+[stats]
+id = 0.0
+xp = 20.0
+hp = 100.0
+mp = 100.0
+xp_next = 10.0
+hp_max = 100.0
+mp_max = 100.0
+level = 10.0
+speed = 10.0
+gp = 30.0
+atk = 40.0
+def = 50.0
+m_atk = 60.0
+m_def = 70.0
+agility = 10.0
+strength = 100.0
+dexterity = 10.0
+constitution = 50.0
+intelligence = 10.0
+charisma = 90.0
+wisdom = 70.0
+age = 25.0
